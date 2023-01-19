@@ -1,3 +1,10 @@
+/*EQUIPO
+Eduardo Rodriguez
+Adriana Martinez
+Ashley Resendiz
+Vanessa Escobedo
+*/
+
 #include "lib/include.h" //librerias
 
 #define SENSOR  (*((volatile uint32_t *)0x4002400C)) //0x4002.4000 GPIO -> dirección base del puerto E
@@ -25,12 +32,13 @@ State_t FSM[4]= //arreglo de estructuras
  {0x22, 50,{goE,goE,goE,goE}},
  {0x0C,300,{goE,goE,waitE,waitE}},
  {0x14, 50,{goN,goN,goN,goN}}};
+
 uint32_t S;  // index to the current state
 uint32_t Input;
 
 int main(void)
 {
-  PLL_CONFIG(); //configuración de la velocidad de reloj       // 80 MHz, Program 10.1
+  Configurar_PLL(_80MHZ); //configuración de la velocidad de reloj      
   SysTick_Init();   // Program 10.2
   Configurar_GPIO(); //configuración GPIO
   
